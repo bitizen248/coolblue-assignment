@@ -1,2 +1,41 @@
-version: 3
+version: "3"
 services:
+
+  rabbitmq:
+    image: rabbitmq:3.7.7-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_VHOST=/
+    volumes:
+      - ./rabbitmq/data:/var/lib/rabbitmq
+      - ./rabbitmq/log:/var/log/rabbitmq
+      - ./rabbitmq/etc:/etc/rabbitmq
+    networks:
+      - pathfinder
+
+  pathfinder:
+    build:
+      context: pathfinder/.
+      dockerfile: Dockerfile
+    container_name: pathfinder
+    depends_on:
+      - rabbitmq
+    hostname: pathfinder
+    environment:
+      PATHFINDER_RABBIT_HOST: rabbitmq
+      PATHFINDER_RABBIT_PORT: 5672
+      PATHFINDER_RABBIT_USER: guest
+      PATHFINDER_RABBIT_PASSWORD: guest
+      PATHFINDER_RABBIT_VHOST: /
+    networks:
+      - pathfinder
+
+networks:
+  pathfinder:
+    driver: bridge
