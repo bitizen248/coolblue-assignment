@@ -9,13 +9,14 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
-      - RABBITMQ_DEFAULT_VHOST=/
-    volumes:
-      - ./rabbitmq/data:/var/lib/rabbitmq
-      - ./rabbitmq/log:/var/log/rabbitmq
-      - ./rabbitmq/etc:/etc/rabbitmq
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:15672" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
     networks:
       - pathfinder
 
@@ -26,6 +27,8 @@ services:
     container_name: pathfinder
     depends_on:
       - rabbitmq
+    links:
+      - rabbitmq
     hostname: pathfinder
     environment:
       PATHFINDER_RABBIT_HOST: rabbitmq
@@ -33,6 +36,25 @@ services:
       PATHFINDER_RABBIT_USER: guest
       PATHFINDER_RABBIT_PASSWORD: guest
       PATHFINDER_RABBIT_VHOST: /
+      PATHFINDER_RABBIT_LISTENER_PROBLEMS_QUEUE: cb.RoutingProblems.Problems
+    networks:
+      - pathfinder
+
+  mockdelivery:
+    build:
+      context: mockdelivery/.
+      dockerfile: Dockerfile
+    container_name: mockdelivery
+    depends_on:
+      - pathfinder
+    hostname: mockdelivery
+    environment:
+      MOCKDELIVERY_RABBIT_HOST: rabbitmq
+      MOCKDELIVERY_RABBIT_PORT: 5672
+      MOCKDELIVERY_RABBIT_USER: guest
+      MOCKDELIVERY_RABBIT_PASSWORD: guest
+      MOCKDELIVERY_RABBIT_VHOST: /
+      MOCKDELIVERY_PROBLEM_QUEUE: cb.RoutingProblems.Problems
     networks:
       - pathfinder
 

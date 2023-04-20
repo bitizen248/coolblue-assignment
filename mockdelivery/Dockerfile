@@ -4,4 +4,4 @@ WORKDIR /app
 COPY . /app
 RUN poetry config virtualenvs.create false
 RUN poetry install --only main
-CMD ["poetry", "run", "python", "pathfinder/main.py"]
+CMD ["poetry", "run", "python", "mockdelivery/main.py"]
