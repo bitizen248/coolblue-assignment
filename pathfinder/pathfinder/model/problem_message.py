@@ -1,5 +1,6 @@
 from pydantic.main import BaseModel
 
+
 class Point(BaseModel):
     """
     Point in the problem
@@ -10,6 +11,7 @@ class Point(BaseModel):
     available_from: int | None = None
     available_to: int | None = None
 
+
 class ProblemMessage(BaseModel):
     """
     Problem message from RabbitMQ
@@ -18,5 +20,3 @@ class ProblemMessage(BaseModel):
     vehicle_count: int = 1
     points: list[Point]
     depot_index: int = 0
-
-

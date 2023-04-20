@@ -5,12 +5,14 @@ from pydantic.main import BaseModel
 from pathfinder.model.problem_message import Point
 from pathfinder.model.solution import Solution
 
+
 class VehicleSolutionMessage(BaseModel):
     """
-    Vehicle solution
+    Vehicle solution message to RabbitMQ
     """
     distance: float
     path: list[Point]
+
 
 class SolutionMessage(BaseModel):
     """
@@ -20,6 +22,9 @@ class SolutionMessage(BaseModel):
     vehicle_solutions: list[VehicleSolutionMessage]
 
     def __init__(__pydantic_self__, solution: Solution) -> None:
+        """
+        Constructor from solution object of the algorithm
+        """
         super().__init__(
             id=solution.id,
             vehicle_solutions=[
@@ -39,6 +44,3 @@ class SolutionMessage(BaseModel):
                 for vehicle_solution in solution.vehicle_solutions
             ]
         )
-
-
-

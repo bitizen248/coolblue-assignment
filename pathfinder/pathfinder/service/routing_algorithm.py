@@ -8,13 +8,18 @@ from ortools.constraint_solver import routing_enums_pb2
 
 
 class RoutingAlgorithmService(BaseService):
+    """
+    Routing algorithm service
+    """
 
     def solve_routing_problem(self, problem: Problem) -> Solution:
         """
         ✧･ﾟ: *✧･ﾟ:* ･ﾟ✧*:･ﾟ✧
          Magic happens here
         ✧･ﾟ: *✧･ﾟ:* ･ﾟ✧*:･ﾟ✧
+        This algorithm is based on the Google OR-Tools library
         """
+        # Create routing model
         manager = pywrapcp.RoutingIndexManager(
             problem.get_points_count(),  # Points count
             problem.vehicle_count,  # Vehicles count
@@ -22,7 +27,12 @@ class RoutingAlgorithmService(BaseService):
         )
         routing = pywrapcp.RoutingModel(manager)
 
+
+        # Define weight of each edge
         def distance_callback(from_index, to_index):
+            """
+            Callback for OR-Tools to measure distance between two points
+            """
             from_node = manager.IndexToNode(from_index)
             to_node = manager.IndexToNode(to_index)
             return problem.calculate_distance(from_node, to_node)
@@ -32,9 +42,13 @@ class RoutingAlgorithmService(BaseService):
         )
         routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
         search_parameters = pywrapcp.DefaultRoutingSearchParameters()
+
+        # Setting first solution heuristic (cheapest addition).
         search_parameters.first_solution_strategy = (
             routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
         )
+
+        # Add distance constraint
         dimension_name = 'Distance'
         routing.AddDimension(
             transit_callback_index,
@@ -44,17 +58,18 @@ class RoutingAlgorithmService(BaseService):
             dimension_name)
         distance_dimension = routing.GetDimensionOrDie(dimension_name)
         distance_dimension.SetGlobalSpanCostCoefficient(100)
+
+        # Solve the problem and parse the solution.
         solution = routing.SolveWithParameters(search_parameters)
         return self._get_solution(problem, manager, routing, solution)
 
+    @staticmethod
     def _get_solution(
-        self, problem: Problem, manager, routing, solution
+        problem: Problem, manager, routing, solution
     ) -> Solution:
         """
         Get solution from routing model
         """
-        """Prints solution on console."""
-        print(f'Objective: {solution.ObjectiveValue()}')
         vehicle_solutions = []
         for vehicle_id in range(problem.vehicle_count):
             index = routing.Start(vehicle_id)

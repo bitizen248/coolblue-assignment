@@ -10,6 +10,9 @@ def rabbit_connection_resource(
     password: str,
     vhost: str = "/",
 ) -> BlockingConnection:
+    """
+    RabbitMQ connection resource
+    """
     connection = BlockingConnection(ConnectionParameters(
         host=host,
         port=port,
