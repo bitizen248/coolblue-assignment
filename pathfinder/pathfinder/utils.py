@@ -8,17 +8,21 @@ def rabbit_callback(func):
     Decorator for rabbitmq callbacks
     Catches exceptions and sends error message back to the client
     """
+
     def wrapper(self, channel, method, properties, body):
         try:
-            func(self, channel, method, properties, body)
+            error = func(self, channel, method, properties, body)
         except Exception as e:
             self.logger.error("Error processing message", exc_info=e)
+            error = ErrorMessage(
+                message="Error processing message. Check logs for details",
+            )
+
+        if error:
             channel.basic_publish(
                 exchange="",
-                routing_key=properties.reply_to,
-                body=ErrorMessage(
-                    message="Error processing message. Check logs for details",
-                ).json(),
+                routing_key=properties.reply_to or self.default_response_queue,
+                body=error.json(),
                 properties=BasicProperties(
                     correlation_id=properties.correlation_id
                 )

@@ -1,0 +1,267 @@
+{
+  "id": "test",
+  "vehicle_count": 4,
+  "depot_index": 0,
+  "points": [
+      {
+        "name": "Tirana",
+        "lat": 19.82,
+        "long": 41.33
+      },
+      {
+        "name": "Andorra la Vella",
+        "lat": 1.52,
+        "long": 42.51
+      },
+      {
+        "name": "Vienna",
+        "lat": 16.37,
+        "long": 48.21
+      },
+      {
+        "name": "Minsk",
+        "lat": 27.57,
+        "long": 53.9
+      },
+      {
+        "name": "Brussels",
+        "lat": 4.35,
+        "long": 50.85
+      },
+      {
+        "name": "Sarajevo",
+        "lat": 18.36,
+        "long": 43.85
+      },
+      {
+        "name": "Sofia",
+        "lat": 23.32,
+        "long": 42.7
+      },
+      {
+        "name": "Zagreb",
+        "lat": 15.98,
+        "long": 45.81
+      },
+      {
+        "name": "Nicosia",
+        "lat": 33.37,
+        "long": 35.17
+      },
+      {
+        "name": "Prague",
+        "lat": 14.42,
+        "long": 50.09
+      },
+      {
+        "name": "Copenhagen",
+        "lat": 12.57,
+        "long": 55.68
+      },
+      {
+        "name": "Tallinn",
+        "lat": 24.75,
+        "long": 59.44
+      },
+      {
+        "name": "T\\u00f3rshavn",
+        "lat": -6.77,
+        "long": 62.01
+      },
+      {
+        "name": "Helsinki",
+        "lat": 24.94,
+        "long": 60.17
+      },
+      {
+        "name": "Paris",
+        "lat": 2.35,
+        "long": 48.85
+      },
+      {
+        "name": "Berlin",
+        "lat": 13.41,
+        "long": 52.52
+      },
+      {
+        "name": "Gibraltar",
+        "lat": -5.35,
+        "long": 36.14
+      },
+      {
+        "name": "Athens",
+        "lat": 23.72,
+        "long": 37.98
+      },
+      {
+        "name": "St Peter Port",
+        "lat": -2.54,
+        "long": 49.46
+      },
+      {
+        "name": "Budapest",
+        "lat": 19.04,
+        "long": 47.5
+      },
+      {
+        "name": "Reykjav\\u00edk",
+        "lat": -21.9,
+        "long": 64.14
+      },
+      {
+        "name": "Dublin",
+        "lat": -6.25,
+        "long": 53.33
+      },
+      {
+        "name": "Douglas",
+        "lat": -4.48,
+        "long": 54.15
+      },
+      {
+        "name": "Rome",
+        "lat": 12.48,
+        "long": 41.89
+      },
+      {
+        "name": "Saint Helier",
+        "lat": -2.1,
+        "long": 49.19
+      },
+      {
+        "name": "Pristina",
+        "lat": 21.17,
+        "long": 42.67
+      },
+      {
+        "name": "Riga",
+        "lat": 24.11,
+        "long": 56.95
+      },
+      {
+        "name": "Vaduz",
+        "lat": 9.52,
+        "long": 47.14
+      },
+      {
+        "name": "Vilnius",
+        "lat": 25.28,
+        "long": 54.69
+      },
+      {
+        "name": "Luxembourg",
+        "lat": 6.13,
+        "long": 49.61
+      },
+      {
+        "name": "Skopje",
+        "lat": 21.43,
+        "long": 42
+      },
+      {
+        "name": "Valletta",
+        "lat": 14.51,
+        "long": 35.9
+      },
+      {
+        "name": "Chi\\u015fin\\u0103u",
+        "lat": 28.86,
+        "long": 47.01
+      },
+      {
+        "name": "Monaco",
+        "lat": 7.42,
+        "long": 43.73
+      },
+      {
+        "name": "Podgorica",
+        "lat": 19.26,
+        "long": 42.44
+      },
+      {
+        "name": "Amsterdam",
+        "lat": 4.89,
+        "long": 52.37
+      },
+      {
+        "name": "Oslo",
+        "lat": 10.75,
+        "long": 59.91
+      },
+      {
+        "name": "Warsaw",
+        "lat": 21.01,
+        "long": 52.23
+      },
+      {
+        "name": "Lisbon",
+        "lat": -9.13,
+        "long": 38.72
+      },
+      {
+        "name": "Bucharest",
+        "lat": 26.11,
+        "long": 44.43
+      },
+      {
+        "name": "Moscow",
+        "lat": 37.62,
+        "long": 55.75
+      },
+      {
+        "name": "San Marino",
+        "lat": 12.45,
+        "long": 43.94
+      },
+      {
+        "name": "Belgrade",
+        "lat": 20.47,
+        "long": 44.8
+      },
+      {
+        "name": "Bratislava",
+        "lat": 17.11,
+        "long": 48.15
+      },
+      {
+        "name": "Ljubljana",
+        "lat": 14.51,
+        "long": 46.05
+      },
+      {
+        "name": "Madrid",
+        "lat": -3.7,
+        "long": 40.42
+      },
+      {
+        "name": "longgyearbyen",
+        "lat": 15.64,
+        "long": 78.22
+      },
+      {
+        "name": "Stockholm",
+        "lat": 18.06,
+        "long": 59.33
+      },
+      {
+        "name": "Berne",
+        "lat": 7.45,
+        "long": 46.95
+      },
+      {
+        "name": "Kiev",
+        "lat": 30.52,
+        "long": 50.45
+      },
+      {
+        "name": "longdon",
+        "lat": -0.13,
+        "long": 51.51
+      },
+      {
+        "name": "Vatican",
+        "lat": 12.45,
+        "long": 41.9
+      }
+  ]
+}

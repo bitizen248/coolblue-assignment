@@ -1,4 +1,5 @@
-from dependency_injector import containers, providers
+from dependency_injector import containers
+from dependency_injector import providers
 
 from pathfinder.resource.rabbit_connection import rabbit_connection_resource
 from pathfinder.service.rabbit_listener import RabbitListenerService

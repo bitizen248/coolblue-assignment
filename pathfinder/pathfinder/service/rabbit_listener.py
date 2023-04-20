@@ -24,7 +24,7 @@ class RabbitListenerService(BaseService):
         rabbit_connection: BlockingConnection,
         routing_service: RoutingAlgorithmService,
         default_response_queue: str,
-        problems_queue: str = "problems",
+        problems_queue: str,
     ) -> None:
         super().__init__()
         self.problems_queue = problems_queue
@@ -34,9 +34,12 @@ class RabbitListenerService(BaseService):
         self.channel = None
 
     @rabbit_callback
-    def _on_new_problem(self, channel, method, properties, body) -> None:
+    def _on_new_problem(
+        self, channel, method, properties, body
+    ) -> ErrorMessage | None:
         """
         Callback for new problem messages
+        If callback returns an error message, it will be sent back to the client
         """
         self.logger.info("Received message")
         problem = body.decode("utf-8")
@@ -44,29 +47,17 @@ class RabbitListenerService(BaseService):
             problem = ProblemMessage(**json.loads(problem))
         except json.JSONDecodeError:
             self.logger.error("Could not decode message")
-            self._nack_message_with_error(
-                channel=channel,
-                properties=properties,
-                method=method,
-                error=ErrorMessage(
-                    message="Could not decode message"
-                ),
+            return ErrorMessage(
+                message="Could not decode message"
             )
-            return
         except ValidationError as error:
             self.logger.error("Failed to parse message")
-            self._nack_message_with_error(
-                channel=channel,
-                properties=properties,
-                method=method,
-                error=ErrorMessage(
-                    message="Failed to parse message",
-                    details={
-                        "errors": error.errors(),
-                    }
-                ),
+            return ErrorMessage(
+                message="Failed to parse message",
+                details={
+                    "errors": error.errors(),
+                }
             )
-            return
         self.logger.info("Solving problem")
         problem = Problem(problem)
         solution = self.routing_service.solve_routing_problem(problem)

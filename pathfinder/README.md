@@ -5,6 +5,7 @@ For solving this problem, we use the OR-Tools library.
 ## Setup and run
 Service uses poetry for package management. To install all dependencies, run:
 ```bash
+pip3 install poetry
 poetry install --only main
 ```
 
