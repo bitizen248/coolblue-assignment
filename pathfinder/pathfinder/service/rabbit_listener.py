@@ -34,7 +34,9 @@ class RabbitListenerService(BaseService):
         self.channel = None
 
     @rabbit_callback
-    def _on_new_problem(self, channel, method, properties, body) -> ErrorMessage | None:
+    def _on_new_problem(
+        self, channel, method, properties, body
+    ) -> ErrorMessage | None:
         """
         Callback for new problem messages
         If callback returns an error message, it will be sent back to the client
@@ -62,7 +64,8 @@ class RabbitListenerService(BaseService):
             exchange="",
             routing_key=properties.reply_to or self.default_response_queue,
             body=SolutionMessage(solution).json(),
-            properties=BasicProperties(correlation_id=properties.correlation_id),
+            properties=BasicProperties(
+                correlation_id=properties.correlation_id),
         )
         channel.basic_ack(delivery_tag=method.delivery_tag)
 
@@ -75,7 +78,8 @@ class RabbitListenerService(BaseService):
             exchange="",
             routing_key=properties.reply_to,
             body=error.json(),
-            properties=BasicProperties(correlation_id=properties.correlation_id),
+            properties=BasicProperties(
+                correlation_id=properties.correlation_id),
         )
         channel.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
 
@@ -83,7 +87,6 @@ class RabbitListenerService(BaseService):
         """
         Start listening for messages
         """
-        self.logger.info("Starting to listen for messages")
         self.channel = self.rabbit_connection.channel()
 
         # Here we can declare DLX for problematic messages
@@ -94,6 +97,10 @@ class RabbitListenerService(BaseService):
             on_message_callback=self._on_new_problem,
             auto_ack=False,
         )
+
+        self.channel.queue_declare(queue=self.default_response_queue,
+                                   durable=True)
+        self.logger.info("Starting to listen for messages")
         self.channel.start_consuming()
 
     def stop_listening(self):
