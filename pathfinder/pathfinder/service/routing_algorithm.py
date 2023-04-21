@@ -27,7 +27,6 @@ class RoutingAlgorithmService(BaseService):
         )
         routing = pywrapcp.RoutingModel(manager)
 
-
         # Define weight of each edge
         def distance_callback(from_index, to_index):
             """
@@ -37,9 +36,7 @@ class RoutingAlgorithmService(BaseService):
             to_node = manager.IndexToNode(to_index)
             return problem.calculate_distance(from_node, to_node)
 
-        transit_callback_index = routing.RegisterTransitCallback(
-            distance_callback
-        )
+        transit_callback_index = routing.RegisterTransitCallback(distance_callback)
         routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
         search_parameters = pywrapcp.DefaultRoutingSearchParameters()
 
@@ -49,31 +46,35 @@ class RoutingAlgorithmService(BaseService):
         )
 
         # Add distance constraint
-        dimension_name = 'Distance'
+        dimension_name = "Distance"
         routing.AddDimension(
             transit_callback_index,
             0,  # no slack
             3000,  # vehicle maximum travel distance
             True,  # start cumul to zero
-            dimension_name)
+            dimension_name,
+        )
         distance_dimension = routing.GetDimensionOrDie(dimension_name)
         distance_dimension.SetGlobalSpanCostCoefficient(100)
 
         # Solve the problem and parse the solution.
         solution = routing.SolveWithParameters(search_parameters)
-        return self._get_solution(problem, manager, routing, solution)
+        return self._get_solution(
+            problem=problem,
+            manager=manager,
+            routing=routing,
+            solution=solution,
+        )
 
     @staticmethod
-    def _get_solution(
-        problem: Problem, manager, routing, solution
-    ) -> Solution:
+    def _get_solution(problem: Problem, manager, routing, solution) -> Solution:
         """
         Get solution from routing model
         """
         vehicle_solutions = []
         for vehicle_id in range(problem.vehicle_count):
             index = routing.Start(vehicle_id)
-            plan_output = 'Route for vehicle {}:\n'.format(vehicle_id)
+            plan_output = "Route for vehicle {}:\n".format(vehicle_id)
             route_distance = 0
             path = []
             while not routing.IsEnd(index):
@@ -81,12 +82,14 @@ class RoutingAlgorithmService(BaseService):
                 previous_index = index
                 index = solution.Value(routing.NextVar(index))
                 route_distance += routing.GetArcCostForVehicle(
-                    previous_index, index, vehicle_id)
+                    previous_index, index, vehicle_id
+                )
 
             path.append(problem.points[manager.IndexToNode(index)])
-            plan_output += 'Distance of the route: {}m\n'.format(route_distance)
+            plan_output += "Distance of the route: {}m\n".format(route_distance)
             vehicle_solutions.append(
-                VehicleSolution(distance=route_distance, path=path))
+                VehicleSolution(distance=route_distance, path=path)
+            )
         return Solution(
             id=problem.id,
             vehicle_solutions=vehicle_solutions,

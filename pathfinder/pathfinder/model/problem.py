@@ -16,11 +16,13 @@ class Problem:
         self.vehicle_count = problem_message.vehicle_count
         self.points = list()
         for point in problem_message.points:
-            self.points.append({
-                "name": point.name,
-                "lat": point.lat,
-                "long": point.long,
-            })
+            self.points.append(
+                {
+                    "name": point.name,
+                    "lat": point.lat,
+                    "long": point.long,
+                }
+            )
         self.depot_index = problem_message.depot_index
 
     def calculate_distance(self, a_index, b_index) -> int:
@@ -38,9 +40,7 @@ class Problem:
         """
         Calculate distance between two points
         """
-        return math.sqrt(
-            (a["lat"] - b["lat"]) ** 2 + (a["long"] - b["long"]) ** 2
-        )
+        return math.sqrt((a["lat"] - b["lat"]) ** 2 + (a["long"] - b["long"]) ** 2)
 
     def get_points_count(self) -> int:
         """

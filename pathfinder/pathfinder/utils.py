@@ -23,9 +23,7 @@ def rabbit_callback(func):
                 exchange="",
                 routing_key=properties.reply_to or self.default_response_queue,
                 body=error.json(),
-                properties=BasicProperties(
-                    correlation_id=properties.correlation_id
-                )
+                properties=BasicProperties(correlation_id=properties.correlation_id),
             )
             channel.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
 

@@ -13,11 +13,13 @@ def rabbit_connection_resource(
     """
     RabbitMQ connection resource
     """
-    connection = BlockingConnection(ConnectionParameters(
-        host=host,
-        port=port,
-        credentials=PlainCredentials(user, password),
-        virtual_host=vhost,
-    ))
+    connection = BlockingConnection(
+        ConnectionParameters(
+            host=host,
+            port=port,
+            credentials=PlainCredentials(user, password),
+            virtual_host=vhost,
+        )
+    )
     yield connection
     connection.close()

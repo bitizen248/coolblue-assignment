@@ -7,5 +7,6 @@ class ErrorMessage(BaseModel):
     """
     Error message for RabbitMQ
     """
+
     message: str
     additional_info: dict[str, Any] | None = None

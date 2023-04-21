@@ -22,17 +22,17 @@ def container():
 
 @pytest.fixture
 def mock_rabbit_connection(container):
-    with container.rabbit_connection.override(providers.Singleton(
-            MockRabbitConnection
-    )):
+    with container.rabbit_connection.override(
+        providers.Singleton(MockRabbitConnection)
+    ):
         yield container.rabbit_connection()
 
 
 @pytest.fixture
 def mock_routing_algorithm(container):
-    with container.routing_service.override(providers.Singleton(
-            MockRoutingAlgorithmService
-    )):
+    with container.routing_service.override(
+        providers.Singleton(MockRoutingAlgorithmService)
+    ):
         yield container.routing_service()
 
 

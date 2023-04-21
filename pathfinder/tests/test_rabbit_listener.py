@@ -1,8 +1,5 @@
 def test_rabbit_listener(
-    container,
-    mock_rabbit_connection,
-    mock_routing_algorithm,
-    test_message
+    container, mock_rabbit_connection, mock_routing_algorithm, test_message
 ):
     """
     Test that the rabbit listener service works as expected
@@ -25,7 +22,7 @@ def test_rabbit_listener(
 
     rabbit_service.stop_listening()
     assert not mock_rabbit_connection.is_listening
-    assert  len(mock_rabbit_connection.messages) == 1
+    assert len(mock_rabbit_connection.messages) == 1
     message = mock_rabbit_connection.messages[0]
     assert message["exchange"] == ""
     assert message["routing_key"] == "cb.RoutingProblems.Solutions"

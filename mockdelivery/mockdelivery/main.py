@@ -24,7 +24,7 @@ def main():
     logger.setLevel(logging.DEBUG)
     handler = logging.StreamHandler(sys.stdout)
     handler.setLevel(logging.DEBUG)
-    formatter = logging.Formatter('%(message)s')
+    formatter = logging.Formatter("%(message)s")
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
@@ -32,15 +32,17 @@ def main():
     points_service = PointsService()
 
     # RabbitMQ connection
-    connection = BlockingConnection(ConnectionParameters(
-        host=os.getenv("MOCKDELIVERY_RABBIT_HOST"),
-        port=int(os.getenv("MOCKDELIVERY_RABBIT_PORT")),
-        credentials=PlainCredentials(
-            os.getenv("MOCKDELIVERY_RABBIT_USER"),
-            os.getenv("MOCKDELIVERY_RABBIT_PASSWORD"),
-        ),
-        virtual_host=os.getenv("MOCKDELIVERY_RABBIT_VHOST"),
-    ))
+    connection = BlockingConnection(
+        ConnectionParameters(
+            host=os.getenv("MOCKDELIVERY_RABBIT_HOST"),
+            port=int(os.getenv("MOCKDELIVERY_RABBIT_PORT")),
+            credentials=PlainCredentials(
+                os.getenv("MOCKDELIVERY_RABBIT_USER"),
+                os.getenv("MOCKDELIVERY_RABBIT_PASSWORD"),
+            ),
+            virtual_host=os.getenv("MOCKDELIVERY_RABBIT_VHOST"),
+        )
+    )
     channel = connection.channel()
     queue_name = os.getenv("MOCKDELIVERY_PROBLEM_QUEUE")
 
@@ -74,9 +76,10 @@ def main():
             solution_found = False
             for _ in range(10):
                 time.sleep(2)
-                method_frame, _, body = channel.basic_get(
-                    queue=queue.method.queue)
-                logger.info("#" * 60,)
+                method_frame, _, body = channel.basic_get(queue=queue.method.queue)
+                logger.info(
+                    "#" * 60,
+                )
                 if method_frame:
                     # Solution found!
                     logger.info("Received solution!")
@@ -108,5 +111,5 @@ def main():
     connection.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

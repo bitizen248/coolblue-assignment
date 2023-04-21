@@ -25,7 +25,7 @@ class RabbitListenerService(BaseService):
         routing_service: RoutingAlgorithmService,
         default_response_queue: str,
         problems_queue: str,
-    ) -> None:
+    ):
         super().__init__()
         self.problems_queue = problems_queue
         self.default_response_queue = default_response_queue
@@ -34,9 +34,7 @@ class RabbitListenerService(BaseService):
         self.channel = None
 
     @rabbit_callback
-    def _on_new_problem(
-        self, channel, method, properties, body
-    ) -> ErrorMessage | None:
+    def _on_new_problem(self, channel, method, properties, body) -> ErrorMessage | None:
         """
         Callback for new problem messages
         If callback returns an error message, it will be sent back to the client
@@ -47,16 +45,14 @@ class RabbitListenerService(BaseService):
             problem = ProblemMessage(**json.loads(problem))
         except json.JSONDecodeError:
             self.logger.error("Could not decode message")
-            return ErrorMessage(
-                message="Could not decode message"
-            )
+            return ErrorMessage(message="Could not decode message")
         except ValidationError as error:
             self.logger.error("Failed to parse message")
             return ErrorMessage(
                 message="Failed to parse message",
                 details={
                     "errors": error.errors(),
-                }
+                },
             )
         self.logger.info("Solving problem")
         problem = Problem(problem)
@@ -66,16 +62,12 @@ class RabbitListenerService(BaseService):
             exchange="",
             routing_key=properties.reply_to or self.default_response_queue,
             body=SolutionMessage(solution).json(),
-            properties=BasicProperties(
-                correlation_id=properties.correlation_id
-            )
+            properties=BasicProperties(correlation_id=properties.correlation_id),
         )
         channel.basic_ack(delivery_tag=method.delivery_tag)
 
     @staticmethod
-    def _nack_message_with_error(
-        channel, properties, method, error: ErrorMessage
-    ) -> None:
+    def _nack_message_with_error(channel, properties, method, error):
         """
         NACK a message with an error message
         """
@@ -83,13 +75,11 @@ class RabbitListenerService(BaseService):
             exchange="",
             routing_key=properties.reply_to,
             body=error.json(),
-            properties=BasicProperties(
-                correlation_id=properties.correlation_id
-            )
+            properties=BasicProperties(correlation_id=properties.correlation_id),
         )
         channel.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
 
-    def start_listening(self) -> None:
+    def start_listening(self):
         """
         Start listening for messages
         """
@@ -102,11 +92,11 @@ class RabbitListenerService(BaseService):
         self.channel.basic_consume(
             queue=self.problems_queue,
             on_message_callback=self._on_new_problem,
-            auto_ack=False
+            auto_ack=False,
         )
         self.channel.start_consuming()
 
-    def stop_listening(self) -> None:
+    def stop_listening(self):
         """
         Stop listening for messages
         """

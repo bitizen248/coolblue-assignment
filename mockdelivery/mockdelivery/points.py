@@ -6,6 +6,7 @@ class PointsService:
     """
     Service for getting random points
     """
+
     def __init__(self):
         with open("points.json", "r") as file:
             points_data = json.load(file)

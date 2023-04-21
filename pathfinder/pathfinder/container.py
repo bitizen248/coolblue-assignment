@@ -12,6 +12,7 @@ class Container(containers.DeclarativeContainer):
     Here we define all the resources and services.
     Services can be easily mocked for testing.
     """
+
     config = providers.Configuration()  # Config object
 
     # Resources

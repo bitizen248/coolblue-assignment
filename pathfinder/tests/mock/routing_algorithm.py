@@ -10,7 +10,13 @@ class MockRoutingAlgorithmService:
                 VehicleSolution(
                     distance=123,
                     path=[
-                        {"name": "1", "lat": 1, "long": 1, "available_from": 1, "available_to": 1},
+                        {
+                            "name": "1",
+                            "lat": 1,
+                            "long": 1,
+                            "available_from": 1,
+                            "available_to": 1,
+                        },
                     ],
                 ),
             ],

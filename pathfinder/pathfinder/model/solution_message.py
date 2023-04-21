@@ -10,6 +10,7 @@ class VehicleSolutionMessage(BaseModel):
     """
     Vehicle solution message to RabbitMQ
     """
+
     distance: float
     path: list[Point]
 
@@ -18,10 +19,11 @@ class SolutionMessage(BaseModel):
     """
     Solution message to RabbitMQ
     """
+
     id: str
     vehicle_solutions: list[VehicleSolutionMessage]
 
-    def __init__(__pydantic_self__, solution: Solution) -> None:
+    def __init__(self, solution: Solution):
         """
         Constructor from solution object of the algorithm
         """
@@ -37,8 +39,8 @@ class SolutionMessage(BaseModel):
                             long=point["long"],
                         )
                         for point in vehicle_solution.path
-                    ]
+                    ],
                 )
                 for vehicle_solution in solution.vehicle_solutions
-            ]
+            ],
         )
