@@ -63,6 +63,43 @@ To run tests, run:
 ```bash
 poetry run pytest
 ```
+## Interaction with service
+
+Service uses pub/sub model for interaction with other services. 
+It listens to the `PATHFINDER_RABBIT_LISTENER_PROBLEMS_QUEUE`(default `cb.RoutingProblems.Problems`)
+queue for new problems and sends solutions to the `PATHFINDER_RABBIT_LISTENER_DEFAULT_RESPONSE_QUEUE`
+(default `cb.RoutingProblems.Solutions`) queue.
+
+To send request you can user RabbitMQ admin panel.
+
+Also you can use `mockdelivery` service for testing.
+
+Example of request:
+```json
+{
+  "id": "test",
+  "vehicle_count": 1,
+  "depot_index": 0,
+  "points": [
+      {
+        "name": "A",
+        "lat": 0,
+        "long": 0
+      },
+      {
+        "name": "B",
+        "lat": 1,
+        "long": 1
+      },
+      {
+        "name": "C",
+        "lat": 2,
+        "long": 0
+      }
+  ]
+}
+```
+
 
 ## Service architecture
 
