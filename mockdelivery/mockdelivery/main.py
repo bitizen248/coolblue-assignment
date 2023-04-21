@@ -14,6 +14,12 @@ from pika import ConnectionParameters
 
 
 def main():
+    """
+    Main function
+    Sends random points to pathfinder service
+    """
+
+    # Set up logging
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
     handler = logging.StreamHandler(sys.stdout)
@@ -22,11 +28,10 @@ def main():
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
+    # Services declaration
     points_service = PointsService()
 
-    queue_name = os.getenv("MOCKDELIVERY_PROBLEM_QUEUE")
-    logger.info(queue_name)
-
+    # RabbitMQ connection
     connection = BlockingConnection(ConnectionParameters(
         host=os.getenv("MOCKDELIVERY_RABBIT_HOST"),
         port=int(os.getenv("MOCKDELIVERY_RABBIT_PORT")),
@@ -37,9 +42,12 @@ def main():
         virtual_host=os.getenv("MOCKDELIVERY_RABBIT_VHOST"),
     ))
     channel = connection.channel()
+    queue_name = os.getenv("MOCKDELIVERY_PROBLEM_QUEUE")
 
     try:
+        # Sends 5 different problems to pathfinder
         for _ in range(5):
+            # Generate random problem data
             points = points_service.get_random_points()
             vehicle_count = random.randrange(1, 5)
             problem_data = {
@@ -49,8 +57,10 @@ def main():
                 "points": points,
             }
 
+            # Declaring queue for response
             queue = channel.queue_declare(queue="", auto_delete=True)
 
+            # Send problem data to pathfinder
             channel.basic_publish(
                 exchange="",
                 routing_key=queue_name,
@@ -59,15 +69,20 @@ def main():
                     reply_to=queue.method.queue,
                 ),
             )
+
+            # Wait for response
             solution_found = False
             for _ in range(10):
                 time.sleep(2)
                 method_frame, _, body = channel.basic_get(
                     queue=queue.method.queue)
-                logger.info("-" * 60,)
+                logger.info("#" * 60,)
                 if method_frame:
+                    # Solution found!
                     logger.info("Received solution!")
                     response = json.loads(body)
+
+                    # Print solution
                     logger.info("Solution id - %s", response["id"])
                     for i, vehicle in enumerate(response["vehicle_solutions"]):
                         logger.info("Vehicle %s", i)
@@ -77,16 +92,18 @@ def main():
                         )
                         logger.info("Route:")
                         logger.info(route)
+                        logger.info("-" * 60)
                     solution_found = True
+                    channel.queue_delete(queue=queue.method.queue)
                     channel.basic_ack(method_frame.delivery_tag)
                     break
-                else:
-                    pass
             if not solution_found:
                 logger.error("Solution not found!")
             time.sleep(10)
     except KeyboardInterrupt:
         logger.info("Stopping...")
+
+    # Clean up
     channel.close()
     connection.close()
 

@@ -64,7 +64,7 @@
         "long": 59.44
       },
       {
-        "name": "T\\u00f3rshavn",
+        "name": "T\u00f3rshavn",
         "lat": -6.77,
         "long": 62.01
       },
@@ -104,7 +104,7 @@
         "long": 47.5
       },
       {
-        "name": "Reykjav\\u00edk",
+        "name": "Reykjav\u00edk",
         "lat": -21.9,
         "long": 64.14
       },
@@ -164,7 +164,7 @@
         "long": 35.9
       },
       {
-        "name": "Chi\\u015fin\\u0103u",
+        "name": "Chi\u015fin\u0103u",
         "lat": 28.86,
         "long": 47.01
       },
@@ -254,7 +254,7 @@
         "long": 50.45
       },
       {
-        "name": "longdon",
+        "name": "London",
         "lat": -0.13,
         "long": 51.51
       },

@@ -20,8 +20,6 @@ class Problem:
                 "name": point.name,
                 "lat": point.lat,
                 "long": point.long,
-                "available_from": point.available_from,
-                "available_to": point.available_to,
             })
         self.depot_index = problem_message.depot_index
 

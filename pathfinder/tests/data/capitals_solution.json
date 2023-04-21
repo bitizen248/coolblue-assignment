@@ -7,114 +7,82 @@
         {
           "name": "Tirana",
           "lat": 19.82,
-          "long": 41.33,
-          "available_from": null,
-          "available_to": null
+          "long": 41.33
         },
         {
           "name": "Valletta",
           "lat": 14.51,
-          "long": 35.9,
-          "available_from": null,
-          "available_to": null
+          "long": 35.9
         },
         {
           "name": "Andorra la Vella",
           "lat": 1.52,
-          "long": 42.51,
-          "available_from": null,
-          "available_to": null
+          "long": 42.51
         },
         {
           "name": "Madrid",
           "lat": -3.7,
-          "long": 40.42,
-          "available_from": null,
-          "available_to": null
+          "long": 40.42
         },
         {
           "name": "Gibraltar",
           "lat": -5.35,
-          "long": 36.14,
-          "available_from": null,
-          "available_to": null
+          "long": 36.14
         },
         {
           "name": "Lisbon",
           "lat": -9.13,
-          "long": 38.72,
-          "available_from": null,
-          "available_to": null
+          "long": 38.72
         },
         {
           "name": "Dublin",
           "lat": -6.25,
-          "long": 53.33,
-          "available_from": null,
-          "available_to": null
+          "long": 53.33
         },
         {
-          "name": "T\\u00f3rshavn",
+          "name": "T\u00f3rshavn",
           "lat": -6.77,
-          "long": 62.01,
-          "available_from": null,
-          "available_to": null
+          "long": 62.01
         },
         {
           "name": "Amsterdam",
           "lat": 4.89,
-          "long": 52.37,
-          "available_from": null,
-          "available_to": null
+          "long": 52.37
         },
         {
           "name": "Brussels",
           "lat": 4.35,
-          "long": 50.85,
-          "available_from": null,
-          "available_to": null
+          "long": 50.85
         },
         {
           "name": "Vaduz",
           "lat": 9.52,
-          "long": 47.14,
-          "available_from": null,
-          "available_to": null
+          "long": 47.14
         },
         {
           "name": "Ljubljana",
           "lat": 14.51,
-          "long": 46.05,
-          "available_from": null,
-          "available_to": null
+          "long": 46.05
         },
         {
           "name": "Zagreb",
           "lat": 15.98,
-          "long": 45.81,
-          "available_from": null,
-          "available_to": null
+          "long": 45.81
         },
         {
           "name": "Sarajevo",
           "lat": 18.36,
-          "long": 43.85,
-          "available_from": null,
-          "available_to": null
+          "long": 43.85
         },
         {
           "name": "Podgorica",
           "lat": 19.26,
-          "long": 42.44,
-          "available_from": null,
-          "available_to": null
+          "long": 42.44
         },
         {
           "name": "Tirana",
           "lat": 19.82,
-          "long": 41.33,
-          "available_from": null,
-          "available_to": null
+          "long": 41.33
         }
       ]
     },
@@ -124,72 +92,52 @@
         {
           "name": "Tirana",
           "lat": 19.82,
-          "long": 41.33,
-          "available_from": null,
-          "available_to": null
+          "long": 41.33
         },
         {
           "name": "Skopje",
           "lat": 21.43,
-          "long": 42.0,
-          "available_from": null,
-          "available_to": null
+          "long": 42.0
         },
         {
           "name": "Sofia",
           "lat": 23.32,
-          "long": 42.7,
-          "available_from": null,
-          "available_to": null
+          "long": 42.7
         },
         {
           "name": "Bucharest",
           "lat": 26.11,
-          "long": 44.43,
-          "available_from": null,
-          "available_to": null
+          "long": 44.43
         },
         {
-          "name": "Chi\\u015fin\\u0103u",
+          "name": "Chi\u015fin\u0103u",
           "lat": 28.86,
-          "long": 47.01,
-          "available_from": null,
-          "available_to": null
+          "long": 47.01
         },
         {
           "name": "Kiev",
           "lat": 30.52,
-          "long": 50.45,
-          "available_from": null,
-          "available_to": null
+          "long": 50.45
         },
         {
           "name": "Moscow",
           "lat": 37.62,
-          "long": 55.75,
-          "available_from": null,
-          "available_to": null
+          "long": 55.75
         },
         {
           "name": "Nicosia",
           "lat": 33.37,
-          "long": 35.17,
-          "available_from": null,
-          "available_to": null
+          "long": 35.17
         },
         {
           "name": "Athens",
           "lat": 23.72,
-          "long": 37.98,
-          "available_from": null,
-          "available_to": null
+          "long": 37.98
         },
         {
           "name": "Tirana",
           "lat": 19.82,
-          "long": 41.33,
-          "available_from": null,
-          "available_to": null
+          "long": 41.33
         }
       ]
     },
@@ -199,100 +147,72 @@
         {
           "name": "Tirana",
           "lat": 19.82,
-          "long": 41.33,
-          "available_from": null,
-          "available_to": null
+          "long": 41.33
         },
         {
           "name": "Vatican",
           "lat": 12.45,
-          "long": 41.9,
-          "available_from": null,
-          "available_to": null
+          "long": 41.9
         },
         {
           "name": "Rome",
           "lat": 12.48,
-          "long": 41.89,
-          "available_from": null,
-          "available_to": null
+          "long": 41.89
         },
         {
           "name": "Monaco",
           "lat": 7.42,
-          "long": 43.73,
-          "available_from": null,
-          "available_to": null
+          "long": 43.73
         },
         {
           "name": "Saint Helier",
           "lat": -2.1,
-          "long": 49.19,
-          "available_from": null,
-          "available_to": null
+          "long": 49.19
         },
         {
           "name": "St Peter Port",
           "lat": -2.54,
-          "long": 49.46,
-          "available_from": null,
-          "available_to": null
+          "long": 49.46
         },
         {
-          "name": "Reykjav\\u00edk",
+          "name": "Reykjav\u00edk",
           "lat": -21.9,
-          "long": 64.14,
-          "available_from": null,
-          "available_to": null
+          "long": 64.14
         },
         {
           "name": "Douglas",
           "lat": -4.48,
-          "long": 54.15,
-          "available_from": null,
-          "available_to": null
+          "long": 54.15
         },
         {
-          "name": "longdon",
+          "name": "London",
           "lat": -0.13,
-          "long": 51.51,
-          "available_from": null,
-          "available_to": null
+          "long": 51.51
         },
         {
           "name": "Paris",
           "lat": 2.35,
-          "long": 48.85,
-          "available_from": null,
-          "available_to": null
+          "long": 48.85
         },
         {
           "name": "Luxembourg",
           "lat": 6.13,
-          "long": 49.61,
-          "available_from": null,
-          "available_to": null
+          "long": 49.61
         },
         {
           "name": "Berne",
           "lat": 7.45,
-          "long": 46.95,
-          "available_from": null,
-          "available_to": null
+          "long": 46.95
         },
         {
           "name": "San Marino",
           "lat": 12.45,
-          "long": 43.94,
-          "available_from": null,
-          "available_to": null
+          "long": 43.94
         },
         {
           "name": "Tirana",
           "lat": 19.82,
-          "long": 41.33,
-          "available_from": null,
-          "available_to": null
+          "long": 41.33
         }
       ]
     },
@@ -302,135 +222,97 @@
         {
           "name": "Tirana",
           "lat": 19.82,
-          "long": 41.33,
-          "available_from": null,
-          "available_to": null
+          "long": 41.33
         },
         {
           "name": "Belgrade",
           "lat": 20.47,
-          "long": 44.8,
-          "available_from": null,
-          "available_to": null
+          "long": 44.8
         },
         {
           "name": "Budapest",
           "lat": 19.04,
-          "long": 47.5,
-          "available_from": null,
-          "available_to": null
+          "long": 47.5
         },
         {
           "name": "Bratislava",
           "lat": 17.11,
-          "long": 48.15,
-          "available_from": null,
-          "available_to": null
+          "long": 48.15
         },
         {
           "name": "Vienna",
           "lat": 16.37,
-          "long": 48.21,
-          "available_from": null,
-          "available_to": null
+          "long": 48.21
         },
         {
           "name": "Prague",
           "lat": 14.42,
-          "long": 50.09,
-          "available_from": null,
-          "available_to": null
+          "long": 50.09
         },
         {
           "name": "Berlin",
           "lat": 13.41,
-          "long": 52.52,
-          "available_from": null,
-          "available_to": null
+          "long": 52.52
         },
         {
           "name": "Copenhagen",
           "lat": 12.57,
-          "long": 55.68,
-          "available_from": null,
-          "available_to": null
+          "long": 55.68
         },
         {
           "name": "Oslo",
           "lat": 10.75,
-          "long": 59.91,
-          "available_from": null,
-          "available_to": null
+          "long": 59.91
         },
         {
           "name": "longgyearbyen",
           "lat": 15.64,
-          "long": 78.22,
-          "available_from": null,
-          "available_to": null
+          "long": 78.22
         },
         {
           "name": "Stockholm",
           "lat": 18.06,
-          "long": 59.33,
-          "available_from": null,
-          "available_to": null
+          "long": 59.33
         },
         {
           "name": "Helsinki",
           "lat": 24.94,
-          "long": 60.17,
-          "available_from": null,
-          "available_to": null
+          "long": 60.17
         },
         {
           "name": "Tallinn",
           "lat": 24.75,
-          "long": 59.44,
-          "available_from": null,
-          "available_to": null
+          "long": 59.44
         },
         {
           "name": "Riga",
           "lat": 24.11,
-          "long": 56.95,
-          "available_from": null,
-          "available_to": null
+          "long": 56.95
         },
         {
           "name": "Minsk",
           "lat": 27.57,
-          "long": 53.9,
-          "available_from": null,
-          "available_to": null
+          "long": 53.9
         },
         {
           "name": "Vilnius",
           "lat": 25.28,
-          "long": 54.69,
-          "available_from": null,
-          "available_to": null
+          "long": 54.69
         },
         {
           "name": "Warsaw",
           "lat": 21.01,
-          "long": 52.23,
-          "available_from": null,
-          "available_to": null
+          "long": 52.23
         },
         {
           "name": "Pristina",
           "lat": 21.17,
-          "long": 42.67,
-          "available_from": null,
-          "available_to": null
+          "long": 42.67
         },
         {
           "name": "Tirana",
           "lat": 19.82,
-          "long": 41.33,
-          "available_from": null,
-          "available_to": null
+          "long": 41.33
         }
       ]
     }

@@ -8,8 +8,6 @@ class Point(BaseModel):
     name: str
     lat: float
     long: float
-    available_from: int | None = None
-    available_to: int | None = None
 
 
 class ProblemMessage(BaseModel):

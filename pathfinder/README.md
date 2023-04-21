@@ -1,6 +1,6 @@
 # PathFinder
-PathFinder is a service for finding the shortest path for vehicles in array of points.
-For solving this problem, we use the OR-Tools library.
+PathFinder is a service for finding the shortest vehicle path in an array of points.
+To solve this problem, we use the OR-Tools library.
 
 ## Setup and run
 Service uses poetry for package management. To install all dependencies, run:
@@ -21,12 +21,12 @@ Service uses environment variables for configuration. Here is the list of all va
 
 #### Listener service queues
 
-- `PATHFINDER_RABBIT_LISTENER_DEFAULT_RESPONSE_QUEUE` - queue for default response, default value is `cb.RoutingProblems.Solutions`
-- `PATHFINDER_RABBIT_LISTENER_PROBLEMS_QUEUE` - queue for problems, default value is `cb.RoutingProblems.Problems`
+- `PATHFINDER_RABBIT_LISTENER_DEFAULT_RESPONSE_QUEUE` - queue for default response, the default value is `cb.RoutingProblems.Solutions`
+- `PATHFINDER_RABBIT_LISTENER_PROBLEMS_QUEUE` - queue for problems, the default value is `cb.RoutingProblems.Problems`
 
 ### Run service
 
-To run the service, run:
+To run the service:
 ```bash
 poetry run python pathfinder/main.py
 ```
@@ -46,20 +46,20 @@ poetry run pytest
 
 ```mermaid
 graph TB
-    R[RabbitMQ] -- Listening to new problems --- RLS
+    R[RabbitMQ] --- RLS
     
   subgraph PathFinder
-    RLS[RabbitListenerSerivice] -- Parses problem and sends for solving --- RAS[RoutingAlgorithmService]
+    RLS[RabbitListenerSerivice] --- RAS[RoutingAlgorithmService]
     RAS --- OR{OR-tools}
   end
 ```
 
 ### Services description
 - `RabbitListenerService` - service for listening to RabbitMQ queue for new problems. 
-- `RoutingAlgorithmService` - service for solving routing problems. It uses OR-tools library for solving the problem.
+- `RoutingAlgorithmService` - service for solving routing problems. It uses the OR-tools library to solve the problem.
 
 ### Flow description
-1. `RabbitListenerService` receives new problem from RabbitMQ queue
-2. `RabbitListenerService` parses problem and sends it to `RoutingAlgorithmService`
-3. `RoutingAlgorithmService` solves the problem and sends solution back to `RabbitListenerService`
-4. `RabbitListenerService` sends solution to RabbitMQ queue
+1. `RabbitListenerService` receives a new problem from the RabbitMQ queue
+2. `RabbitListenerService` parses the problem and sends it to `RoutingAlgorithmService`
+3. `RoutingAlgorithmService` solves the problem and sends the solution back to `RabbitListenerService`
+4. `RabbitListenerService` sends the solution to RabbitMQ queue
