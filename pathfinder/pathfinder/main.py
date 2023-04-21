@@ -3,6 +3,7 @@ Main entry point for the application
 Runs the rabbit listener service
 """
 from dependency_injector.wiring import inject, Provide
+from dotenv import load_dotenv
 
 from pathfinder.container import Container
 from pathfinder.service.rabbit_listener import RabbitListenerService
@@ -24,6 +25,8 @@ def main(
 
 if __name__ == "__main__":
     container = Container()
+
+    load_dotenv()
 
     # Load config from environment variables
     # RabbitMQ

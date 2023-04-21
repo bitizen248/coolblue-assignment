@@ -5,6 +5,7 @@ import random
 import sys
 import time
 
+from dotenv import load_dotenv
 from pika import BasicProperties
 from pika import PlainCredentials
 
@@ -18,6 +19,9 @@ def main():
     Main function
     Sends random points to pathfinder service
     """
+
+    # Load environment variables
+    load_dotenv()
 
     # Set up logging
     logger = logging.getLogger(__name__)

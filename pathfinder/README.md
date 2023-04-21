@@ -24,6 +24,12 @@ Service uses environment variables for configuration. Here is the list of all va
 - `PATHFINDER_RABBIT_LISTENER_DEFAULT_RESPONSE_QUEUE` - queue for default response, the default value is `cb.RoutingProblems.Solutions`
 - `PATHFINDER_RABBIT_LISTENER_PROBLEMS_QUEUE` - queue for problems, the default value is `cb.RoutingProblems.Problems`
 
+
+
+#### .env
+Service supports .env file. To use it, create `.env` file in the root of the project and put all environment variables 
+there. For quick local setup, you can use `.env.local` file.
+
 ### Run service
 
 To run the service:
